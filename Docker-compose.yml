@@ -1,0 +1,29 @@
+# version: '3.8'
+
+services:
+  backend:
+    build: ./Back-end
+    expose:
+      - "5001"
+    environment:
+      - NODE_ENV=production
+      - PORT=5001
+      - JWT_SECRET=${JWT_SECRET}
+      - SESSION_SECRET=${SESSION_SECRET}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_CALLBACK_URL=${GOOGLE_CALLBACK_URL}
+      - FRONTEND_URL=https://localhost
+    restart: unless-stopped
+
+  nginx:
+    build: 
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    container_name: ft_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    restart: unless-stopped

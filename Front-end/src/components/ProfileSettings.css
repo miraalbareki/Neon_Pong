@@ -1,0 +1,1188 @@
+/* Only keep used selectors below */
+.avatar-preview img,
+.avatar-img {
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 2.5px solid #00e6ff !important;
+  box-shadow: 0 2px 12px #00e6ff44 !important;
+  background: #23244a !important;
+  display: block !important;
+  overflow: hidden !important;
+}
+.profile-settings {
+  background: linear-gradient(135deg, rgba(15, 18, 40, 0.9) 0%, rgba(8, 10, 28, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  text-transform: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.form-section {
+  position: relative;
+}
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar-preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.settings-button,
+.advanced-toggle-button,
+.save-changes-button,
+.secondary-button,
+.danger-button {
+  /* Button base styles */
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.secondary-button {
+  background: linear-gradient(135deg, #00e6ff, #0ea5e9);
+  color: white;
+  font-size: 14px;
+}
+
+.secondary-button:hover {
+  background: linear-gradient(135deg, #00d4ff, #0284c7);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 230, 255, 0.3);
+}
+
+.danger-button {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  font-size: 14px;
+}
+
+.danger-button:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.remove-avatar-btn {
+  font-size: 13px;
+  padding: 8px 16px;
+}
+
+.avatar-button-container {
+  margin-top: 1rem;
+}
+
+/* Custom Confirmation Modal */
+.confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.confirmation-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.confirmation-modal-content {
+  background: linear-gradient(135deg, rgba(15, 18, 40, 0.95) 0%, rgba(8, 10, 28, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  position: relative;
+  overflow: hidden;
+  transform: scale(0.8) translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.confirmation-modal.show .confirmation-modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.confirmation-modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 71, 87, 0.6), transparent);
+}
+
+.confirmation-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.confirmation-modal-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff4757, #ff3838);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  box-shadow: 
+    0 8px 25px rgba(255, 71, 87, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.confirmation-modal-title {
+  color: #ff4757;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.confirmation-modal-message {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.confirmation-modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.confirmation-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.confirmation-btn-cancel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.confirmation-btn-cancel:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1));
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.confirmation-btn-confirm {
+  background: linear-gradient(135deg, #ff4757, #ff3838);
+  color: white;
+  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.3);
+}
+
+.confirmation-btn-confirm:hover {
+  background: linear-gradient(135deg, #ff3838, #e55039);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(255, 71, 87, 0.4),
+    0 0 20px rgba(255, 71, 87, 0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .confirmation-modal-content {
+    padding: 2rem;
+    margin: 1rem;
+  }
+  
+  .confirmation-modal-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .confirmation-btn {
+    width: 100%;
+  }
+}
+.button-icon {
+  margin-right: 8px;
+}
+.button-text {
+  font-weight: 500;
+}
+.button-arrow,
+.button-check {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+.modal-content,
+.modal-header,
+.modal-title,
+.modal-close,
+.modal-body,
+.delete-confirmation-content,
+.warning-icon,
+.confirmation-input-group,
+.confirmation-input,
+.modal-footer,
+.danger-footer {
+  /* Modal styles */
+}
+.delete-profile-btn {
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.danger-zone,
+.danger-warning,
+.warning-text {
+  /* Danger zone styles */
+}
+/* Premium Profile Settings */
+.profile-settings {
+  background: linear-gradient(135deg, rgba(15, 18, 40, 0.9) 0%, rgba(8, 10, 28, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  text-transform: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+/* Button Background Effect */
+.settings-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.settings-button:hover::before {
+  left: 100%;
+}
+
+/* Button Content */
+.button-icon {
+  font-size: 1.2rem;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  transition: all 0.3s ease;
+}
+
+.button-text {
+  flex-grow: 1;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.button-arrow, .button-check {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+/* Advanced Settings Button */
+.advanced-toggle-button {
+  background: linear-gradient(135deg, #6e45e2 0%, #89d4cf 100%);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  min-width: 320px;
+  max-width: 100%;
+  padding: 1.25rem 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 40px;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.advanced-toggle-button:hover {
+  box-shadow: 0 8px 25px rgba(110, 69, 226, 0.4);
+}
+
+.advanced-toggle-button .button-arrow {
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.advanced-toggle-button:hover .button-arrow {
+  transform: translateX(4px);
+}
+
+/* Game History Button */
+
+/* Save Changes Button */
+.save-changes-button {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  min-width: 320px;
+  max-width: 100%;
+  padding: 1.25rem 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 40px;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-top: 0.75rem;
+}
+
+.save-changes-button:hover {
+  box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+}
+
+.save-changes-button .button-check {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+}
+
+.save-changes-button:hover .button-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Button Ripple Effect */
+@keyframes ripple {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+/* Spectacular Profile Settings */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 20px rgba(0, 168, 255, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(0, 168, 255, 0.4); }
+  100% { box-shadow: 0 0 20px rgba(0, 168, 255, 0.2); }
+}
+
+/* Premium Profile Settings */
+.profile-settings {
+  background: linear-gradient(135deg, rgba(15, 18, 40, 0.9) 0%, rgba(8, 10, 28, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 230, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-settings::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 230, 255, 0.5), transparent);
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Premium Form Sections */
+.form-section {
+  position: relative;
+}
+
+.form-section h3 {
+  background: linear-gradient(135deg, #00e6ff, #ff00ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Premium Avatar Section */
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(0, 230, 255, 0.05), rgba(255, 0, 255, 0.05));
+  border-radius: 16px;
+  border: 1px solid rgba(0, 230, 255, 0.1);
+  margin-bottom: 2rem;
+}
+
+.avatar-preview-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.avatar-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 230, 255, 0.15), rgba(255, 0, 255, 0.1));
+  border: 3px solid rgba(0, 230, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.avatar-preview:hover {
+  transform: scale(1.05);
+  border-color: #00e6ff;
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(0, 230, 255, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.avatar-preview i {
+  font-size: 3rem;
+  color: #00e6ff;
+  text-shadow: 0 0 10px rgba(0, 230, 255, 0.5);
+}
+
+.avatar-upload {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #00e6ff, #ff00ff);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-upload:hover {
+  transform: scale(1.1);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(0, 230, 255, 0.5);
+}
+
+.avatar-upload i {
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* Premium Form Groups */
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.form-group:focus-within .form-label {
+  color: #00e6ff;
+}
+
+/* Premium Form Inputs */
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(15, 18, 40, 0.7), rgba(8, 10, 28, 0.8));
+  border: 1px solid rgba(0, 230, 255, 0.2);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #00e6ff;
+  background: linear-gradient(135deg, rgba(15, 18, 40, 0.8), rgba(8, 10, 28, 0.9));
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(0, 230, 255, 0.3),
+    0 1px 2px rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Premium Action Buttons */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 230, 255, 0.1);
+}
+
+.form-actions .primary-button,
+.form-actions .secondary-button {
+  min-width: 140px;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-actions .primary-button {
+  background: linear-gradient(135deg, #00e6ff, #ff00ff);
+  border: none;
+  color: white;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 230, 255, 0.3);
+}
+
+.form-actions .primary-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(0, 230, 255, 0.5);
+}
+
+.form-actions .secondary-button {
+  background: linear-gradient(135deg, rgba(0, 230, 255, 0.1), rgba(255, 0, 255, 0.1));
+  border: 1px solid rgba(0, 230, 255, 0.3);
+  color: #00e6ff;
+}
+
+.form-actions .secondary-button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(0, 230, 255, 0.2), rgba(255, 0, 255, 0.15));
+  border-color: #00e6ff;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 230, 255, 0.3);
+}
+
+/* Delete Profile Section */
+.danger-zone {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 71, 87, 0.05), rgba(255, 0, 0, 0.05));
+  border: 1px solid rgba(255, 71, 87, 0.2);
+  border-radius: 16px;
+  position: relative;
+}
+
+.danger-zone::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 71, 87, 0.5), transparent);
+}
+
+.danger-zone h3 {
+  background: linear-gradient(135deg, #ff4757, #ff3838);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.danger-zone p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.delete-profile-btn {
+  background: linear-gradient(135deg, #ff4757, #ff3838);
+  border: none;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.3);
+}
+
+.delete-profile-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(255, 71, 87, 0.4),
+    0 0 20px rgba(255, 71, 87, 0.3);
+}
+
+/* Account Deletion Button */
+.account-deletion-button {
+  background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.account-deletion-button:hover {
+  box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+}
+
+.account-deletion-button .button-arrow {
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.account-deletion-button:hover .button-arrow {
+  transform: translateX(4px);
+}
+
+/* Account Deletion Content */
+.account-deletion-content {
+  margin-top: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.account-deletion-content .danger-zone {
+  margin-top: 1rem;
+  background: linear-gradient(135deg, rgba(255, 71, 87, 0.08), rgba(255, 0, 0, 0.08));
+  border: 2px solid rgba(255, 71, 87, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.account-deletion-content .danger-zone::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 71, 87, 0.6), transparent);
+}
+
+.danger-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 0, 0, 0.1));
+  border-radius: 12px;
+  border: 1px solid rgba(255, 71, 87, 0.2);
+}
+
+.danger-warning i {
+  font-size: 2rem;
+  color: #ff4757;
+  margin-top: 0.25rem;
+  text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+}
+
+.warning-text h4 {
+  color: #ff4757;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.warning-text p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.warning-text ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.warning-text li {
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.warning-text li::before {
+  content: '✗';
+  position: absolute;
+  left: 0;
+  color: #ff4757;
+  font-weight: 700;
+}
+
+.danger-actions {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 71, 87, 0.2);
+}
+
+.danger-actions .delete-profile-btn {
+  background: linear-gradient(135deg, #ff4757, #ff3838);
+  border: none;
+  color: white;
+  padding: 1.25rem 2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 25px rgba(255, 71, 87, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.danger-actions .delete-profile-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.danger-actions .delete-profile-btn:hover::before {
+  left: 100%;
+}
+
+.danger-actions .delete-profile-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 12px 35px rgba(255, 71, 87, 0.5),
+    0 0 25px rgba(255, 71, 87, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.danger-actions .delete-profile-btn:active {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 
+    0 6px 20px rgba(255, 71, 87, 0.4),
+    0 0 15px rgba(255, 71, 87, 0.3);
+}
+
+.danger-actions .delete-profile-btn i {
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-settings {
+    margin: 1rem;
+    padding: 1.5rem;
+    max-width: none;
+  }
+  
+  .avatar-preview {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .avatar-preview i {
+    font-size: 2.5rem;
+  }
+  
+  .avatar-upload {
+    width: 35px;
+    height: 35px;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .avatar-upload i {
+    font-size: 1rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .form-actions .primary-button,
+  .form-actions .secondary-button {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-settings {
+    padding: 1rem;
+  }
+  
+  .avatar-section {
+    padding: 1.5rem;
+  }
+  
+  .form-section h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Premium Skill Level Selector */
+.skill-level-options {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.radio-option {
+  flex: 1;
+  position: relative;
+  max-width: 150px;
+}
+
+.radio-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.radio-option label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  background: linear-gradient(135deg, rgba(15, 18, 40, 0.7), rgba(8, 10, 28, 0.8));
+  border: 2px solid rgba(0, 230, 255, 0.2);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+  height: 120px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.radio-option label::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 230, 255, 0.1), rgba(255, 0, 255, 0.1));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+  border-radius: 14px;
+}
+
+.radio-option label .level-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  z-index: 2;
+  position: relative;
+}
+
+.radio-option label .level-text {
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  z-index: 2;
+  position: relative;
+}
+
+/* Hover state */
+.radio-option label:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 230, 255, 0.4);
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(0, 230, 255, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.radio-option label:hover::before {
+  opacity: 1;
+}
+
+.radio-option label:hover .level-emoji {
+  transform: scale(1.1);
+}
+
+.radio-option label:hover .level-text {
+  color: #00e6ff;
+}
+
+/* Selected state */
+.radio-option input[type="radio"]:checked + label {
+  background: linear-gradient(135deg, rgba(0, 230, 255, 0.2), rgba(255, 0, 255, 0.15));
+  border-color: #00e6ff;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(0, 230, 255, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.radio-option input[type="radio"]:checked + label::before {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(0, 230, 255, 0.2), rgba(255, 0, 255, 0.2));
+}
+
+.radio-option input[type="radio"]:checked + label .level-emoji {
+  transform: scale(1.15);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+.radio-option input[type="radio"]:checked + label .level-text {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 230, 255, 0.5);
+  font-weight: 700;
+}
+
+/* Specific level colors for emojis */
+.radio-option[data-level="beginner"] .level-emoji {
+  filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.3));
+}
+
+.radio-option[data-level="intermediate"] .level-emoji {
+  filter: drop-shadow(0 2px 4px rgba(255, 193, 7, 0.3));
+}
+
+.radio-option[data-level="expert"] .level-emoji {
+  filter: drop-shadow(0 2px 4px rgba(244, 67, 54, 0.3));
+}
+
+.radio-option input[type="radio"]:checked[data-level="beginner"] + label .level-emoji {
+  filter: drop-shadow(0 4px 8px rgba(76, 175, 80, 0.5));
+}
+
+.radio-option input[type="radio"]:checked[data-level="intermediate"] + label .level-emoji {
+  filter: drop-shadow(0 4px 8px rgba(255, 193, 7, 0.5));
+}
+
+.radio-option input[type="radio"]:checked[data-level="expert"] + label .level-emoji {
+  filter: drop-shadow(0 4px 8px rgba(244, 67, 54, 0.5));
+}
+
+/* Responsive Design for Skill Level */
+@media (max-width: 768px) {
+  .skill-level-options {
+    gap: 0.75rem;
+  }
+  
+  .radio-option label {
+    padding: 1.25rem 0.75rem;
+    height: 100px;
+  }
+  
+  .radio-option label .level-emoji {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .radio-option label .level-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-level-options {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  
+  .radio-option {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .radio-option label {
+    flex-direction: row;
+    height: 70px;
+    padding: 1rem;
+    text-align: left;
+  }
+  
+  .radio-option label .level-emoji {
+    font-size: 2rem;
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
+  
+  .radio-option label .level-text {
+    font-size: 0.9rem;
+  }
+}
+
