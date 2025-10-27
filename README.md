@@ -1,349 +1,168 @@
-# 🎮 Neon Pong - The Ultimate Retro-Futuristic Arcade
+# 🎮 Neon Pong — Retro-Futuristic Pong with Modern Web Stack
 
-> A modern take on the classic Pong game with a sleek neon aesthetic, comprehensive user management, and advanced gaming features.
+> A TypeScript SPA with a Fastify backend, JWT auth, tournaments, AI matches, dashboards, and a neon-themed UI.
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Fastify](https://img.shields.io/badge/Fastify-000000?style=for-the-badge&logo=fastify&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-0db7ed?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
 ## 🌟 Overview
 
-**Neon Pong** is a sophisticated Single Page Application (SPA) that reimagines the classic Pong game with modern web technologies. Built with TypeScript and featuring a stunning neon-themed UI, this project delivers an immersive gaming experience with comprehensive user management, statistics tracking, and social features.
+Neon Pong is a polished Single Page Application reimagining the classic Pong with a neon cyberpunk aesthetic. It combines a TypeScript + Vite frontend with a Fastify backend powered by SQLite. The app features secure auth (JWT + Google OAuth), user profiles, stats dashboards, AI and 1v1 matches, and tournament flows — all reverse-proxied via Nginx with local HTTPS.
 
-### 🎯 Key Highlights
+> Note: After registration, you must log in to access authenticated features.
 
-- **Pure TypeScript SPA** - No frameworks, just clean, efficient code
-- **Retro-Futuristic Design** - Stunning neon aesthetics with CSS animations
-- **Comprehensive User System** - Complete profile management with secure features
-- **Advanced Analytics** - Detailed dashboards with data visualization
-- **Social Features** - Friends system, match history, and achievements
-- **Responsive Design** - Perfect experience across all devices
-- **Accessibility First** - Screen reader support and keyboard navigation
+## 🎯 Highlights
+
+- **TypeScript SPA** — Framework-free, modular architecture.
+- **Fastify Backend** — High-performance API with JWT auth and SQLite.
+- **Neon UI** — Responsive, animated, dark-theme neon design.
+- **Game Modes** — 1v1, AI matches, and tournaments.
+- **Dashboards & Stats** — KPIs, match history, and performance analytics.
+- **Uploads & Avatars** — Static upload serving via Fastify.
+- **Dockerized** — Nginx reverse proxy + backend container.
+- **Local HTTPS** — Self-signed certs for `https://localhost`.
 
 ## 🚀 Features
 
-### 🎮 Game Features
-- **Classic Pong Gameplay** - Smooth, responsive controls
-- **Tournament System** - Competitive multiplayer tournaments
-- **Multiple Game Modes** - 1v1 matches and tournament play
-- **Real-time Statistics** - Live game tracking and scoring
+### Frontend
+- **Pong Core** — Smooth gameplay with TypeScript game engine (`pongGame.ts`, `gamePage.ts`).
+- **Tournament Flow** — Create, join, and track tournaments.
+- **AI Matches** — Play against an AI (integrates with backend `ai` route).
+- **User Profiles** — Update username/alias, avatar upload, and presence.
+- **Dashboard & Stats** — KPIs, win rate, streaks, match history.
+- **Localization** — `translations.ts` for multi-language support.
+- **Neon UX** — Animations, modals, hover states, and accessibility-minded patterns.
 
-### 👤 User Management
-- **Secure Authentication** - Login and registration system
-- **Profile Customization** - Avatar upload, display names, and bios
-- **Account Security** - Profile deletion with confirmation safeguards
-- **Skill Level Tracking** - Beginner to Advanced progression
+### Backend
+- **Fastify API** — CORS, static uploads, multipart, JWT.
+- **Auth** — JWT-based auth and Google OAuth flow.
+- **Users** — Profile management, avatar support, presence heartbeat.
+- **Matches** — 1v1 games (`onevone`) and AI matches (`ai`).
+- **Tournaments** — Create/join/advance, with persistence.
+- **Stats & Dashboards** — Aggregated metrics and performance KPIs.
+- **SQLite** — Persistent local DB via `better-sqlite3`.
 
-### 📊 Analytics & Dashboard
-- **Performance KPIs** - Win rate, ranking, streaks, and play time
-- **Data Visualization** - Interactive charts and graphs
-  - Weekly performance bar charts
-  - Skill progression line graphs
-  - Achievement progress tracking
-- **Advanced Statistics** - Perfect games, comebacks, average scores
-- **Historical Data** - Complete match history with detailed records
+## 🏗️ Architecture
 
-### 🏆 Social & Achievements
-- **Friends System** - Add friends, view online status, challenge players
-- **Achievement System** - Unlock badges and track progress
-  - Win Streak Master
-  - Century Club (100 games)
-  - Perfect Player
-  - Social Butterfly
-- **Match History** - Detailed game records with opponent info
-- **Leaderboards** - Global ranking system
-
-### 🎨 User Interface
-- **Neon Theme** - Cyberpunk-inspired design with glowing effects
-- **Smooth Animations** - CSS transitions and keyframe animations
-- **Interactive Elements** - Hover effects, loading states, modals
-- **Modern Layout** - Card-based design with intuitive navigation
-- **Dark Mode** - Easy on the eyes with neon accents
-
-## 🏗️ Project Architecture
-
-### 📁 Project Structure
+### Project Structure
 ```
 neon-pong/
-├── Front-end/                    # Main application directory
+├── Back-end/
+│   ├── server.js                 # Fastify app bootstrap
+│   ├── controllers/              # Business logic (users, stats, tournaments, AI)
+│   ├── routes/                   # Route definitions (auth, users, tournaments, onevone, ai)
+│   ├── queries/
+│   │   ├── database.js           # DB init and queries (better-sqlite3)
+│   │   └── database.db           # SQLite database (generated/persisted)
+│   └── Dockerfile
+├── Front-end/
 │   ├── src/
-│   │   ├── components/           # Reusable UI components
-│   │   │   └── ProfileSettings.ts    # Profile management component
-│   │   ├── services/             # External services
-│   │   │   └── api.ts               # API service layer
-│   │   ├── styles/               # CSS styling
-│   │   │   ├── style.css            # Main stylesheet (3,700+ lines)
-│   │   │   ├── auth-forms.css       # Authentication form styles
-│   │   │   ├── profile-settings.css # Profile component styles
-│   │   │   └── tournaments.css      # Tournament page styles
-│   │   ├── types/                # TypeScript definitions
-│   │   │   └── index.ts             # Type definitions for User, Match, etc.
-│   │   ├── utils/                # Utility functions
-│   │   │   └── helpers.ts           # Common helper functions
-│   │   └── main.ts               # Application entry point (1,800+ lines)
-│   ├── public/                   # Static assets
-│   │   ├── vite.svg             # Vite logo
-│   │   └── *.png                # Game images and avatars
-│   ├── docs/                    # Documentation
-│   ├── dist/                    # Build output
-│   ├── index.html               # Main HTML file
-│   ├── package.json             # Dependencies and scripts
-│   ├── tsconfig.json            # TypeScript configuration
-│   └── vite.config.ts           # Vite build configuration
-└── README.md                    # This file
+│   │   ├── components/           # UI building blocks
+│   │   ├── services/             # API services
+│   │   ├── styles/               # CSS
+│   │   ├── types/                # TS types
+│   │   ├── utils/                # Helpers
+│   │   ├── pongGame.ts           # Game engine
+│   │   ├── gamePage.ts           # Game page logic
+│   │   └── main.ts               # App entry and SPA router
+│   ├── index.html
+│   ├── vite.config.ts
+│   └── Dockerfile
+├── nginx/
+│   └── Dockerfile                # Nginx reverse proxy with HTTPS
+├── Docker-compose.yml
+├── Makefile
+├── package.json                  # Root deps (passport, express-session for oauth proxying)
+└── README.md
 ```
 
-### 🛠️ Technology Stack
+### Technology Stack
 
-#### Core Technologies
-- **TypeScript** - Type-safe JavaScript with modern ES6+ features
-- **Vite** - Fast build tool and development server
-- **CSS3** - Advanced styling with animations and grid/flexbox
-- **HTML5** - Semantic markup with accessibility features
+- **Frontend**: TypeScript, Vite, HTML5, CSS3
+- **Backend**: Fastify, @fastify/jwt, @fastify/cors, @fastify/multipart, @fastify/static
+- **Database**: SQLite via better-sqlite3
+- **Auth**: JWT + Google OAuth 2.0
+- **Infra**: Docker, Docker Compose, Nginx, local HTTPS
 
-#### Development Tools
-- **ESLint** - Code linting and style enforcement
-- **TypeScript Compiler** - Static type checking
-- **Font Awesome** - Icon library for UI elements
-- **Google Fonts** - Typography (Poppins, Inter, Orbitron, Rajdhani)
+## 🔐 Authentication
 
-#### Key Libraries & APIs
-- **Canvas API** - Game rendering (future implementation)
-- **History API** - SPA routing without page refreshes
-- **Local Storage** - Client-side data persistence
-- **Fetch API** - HTTP requests for backend communication
+- **JWT** — Issued on login, required for protected routes. Presence heartbeat updates `last_seen` and `current_status`.
+- **Google OAuth** — Via `routes/auth.js` (requires Google credentials).
+- **Note** — After registration, you must log in to use authenticated endpoints.
 
-## 🚀 Getting Started
+## 🧭 API Overview
 
-### Prerequisites
-- **Node.js** (v16 or higher)
-- **npm** or **yarn**
-- Modern web browser (Chrome, Firefox, Safari, Edge)
+- **/auth** — Google OAuth endpoints (login/callback).
+- **/users** — Profile CRUD, avatar upload, presence, friends/social (where applicable).
+- **/tournaments** — Create/join/advance, list brackets and results.
+- **/onevone** — Standalone 1v1 matches API.
+- **/ai** — Single-player AI match endpoints.
+- **/uploads/** — Static serving of uploaded assets (avatars, etc.).
 
-### Installation
+Protected routes use the reusable `authenticate` preHandler with JWT verification.
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/hankhali/Final_Transcendence.git
-   cd Final_Transcendence
-   ```
 
-2. **Setup the project** (installs dependencies and generates SSL certificates)
-   ```bash
-   make setup
-   make certs
-   ```
 
-3. **Build and start the application**
-   ```bash
-   make all
-   ```
+## 🎮 Using the App
 
-4. **Open in browser**
-   Navigate to `https://localhost` (SSL enabled)
+- **Register** a new account.
+- **Log in** to access protected features (required after registration).
+- **Play**:
+  - 1v1 matches (quick matches)
+  - AI matches
+  - Tournaments (create/join/advance)
+- **Profile**:
+  - Update alias/username
+  - Upload avatar
+  - Presence auto-updates on activity
+- **Dashboards**:
+  - KPIs (win rate, streaks)
+  - Match history and aggregates
 
-> **Note**: SSL certificates are automatically generated locally and are **not** included in the repository for security reasons. The `make certs` command will create self-signed certificates for local development.
+## 🛡️ Security & Privacy
 
-### Build for Production
+- JWT tokens validated on every protected request.
+- Presence/heartbeat updates `last_seen` and `current_status`.
+- Avatars served from `/uploads/` with Fastify Static.
+- SSL enabled locally via self-signed certs (not committed).
+
+## 📦 Production Build
 
 ```bash
-# Build the application
+# Frontend
+cd Front-end
+npm install
 npm run build
 
-# Preview the production build
-npm run preview
-```
-
-### Development Commands (Cross-Platform Compatible)
-
-```bash
-# Start development server (works on Windows, macOS, Linux)
-npm run dev
-# or
+# Backend
+cd ../Back-end
+npm install
 npm start
-
-# Build for production
-npm run build
-
-# Lint code
-npm run lint
-
-# Preview production build
-npm run preview
 ```
 
-### University/Lab Setup (No Shell Scripts Required)
-
-This project is designed to work on any machine without shell scripts:
-
-1. **On any OS (Windows, macOS, Linux)**:
-   ```bash
-   cd Front-end
-   npm install
-   npm run build
-   ```
-
-2. **Start with Docker (Recommended for university labs)**:
-   ```bash
-   docker-compose up -d
-   ```
-
-3. **Access the application**:
-   - Open browser to `https://localhost`
-   - Accept the self-signed certificate warning
-
-## 🎮 How to Use
-
-### 🏠 Home Page
-- **Welcome Interface** - Learn about the game and features
-- **Navigation** - Access all sections via the top navigation bar
-- **Responsive Design** - Optimized for desktop, tablet, and mobile
-
-### 🔐 Authentication
-- **Register** - Create a new account with username and password
-- **Login** - Access your existing account
-- **Validation** - Real-time form validation with error messages
-
-### 👤 Profile Management
-Navigate to the Profile section to access five main tabs:
-
-1. **📊 Dashboard** (Default)
-   - Performance overview with KPI cards
-   - Interactive charts showing weekly performance and skill progression
-   - Recent matches summary
-   - Achievement progress tracking
-
-2. **⚙️ Profile Settings**
-   - Update username, display name, and bio
-   - Upload custom avatar
-   - Set skill level (Beginner, Intermediate, Advanced)
-   - **Danger Zone** - Secure profile deletion with confirmation
-
-3. **📈 Statistics**
-   - Detailed performance metrics
-   - Win/loss ratios and game counts
-   - Win rate calculations
-
-4. **👥 Friends**
-   - Add and manage friends
-   - View online status
-   - Challenge friends to matches
-   - Remove friends
-
-5. **📜 Match History**
-   - Complete game history
-   - Opponent information
-   - Scores and game duration
-   - Game types (1v1, Tournament)
-
-### 🏆 Tournaments
-- **Browse Tournaments** - View available competitions
-- **Create Tournament** - Host your own tournament
-- **Join Tournament** - Participate in existing tournaments
-- **Tournament Management** - Track progress and results
-
-## 🎨 Design Philosophy
-
-### Visual Identity
-- **Neon Aesthetic** - Cyan and magenta color scheme with glowing effects
-- **Retro-Futuristic** - 80s cyberpunk inspired with modern UX principles
-- **Dark Theme** - Reduces eye strain for extended gaming sessions
-- **Smooth Animations** - Enhances user experience with subtle transitions
-
-### User Experience
-- **Intuitive Navigation** - Clear, logical information architecture
-- **Responsive Design** - Seamless experience across all device sizes
-- **Accessibility** - WCAG compliant with screen reader support
-- **Performance** - Optimized loading times and smooth interactions
-
-### Code Quality
-- **TypeScript First** - Type safety and better developer experience
-- **Modular Architecture** - Reusable components and clear separation of concerns
-- **Clean Code** - Readable, maintainable, and well-documented
-- **Modern Standards** - ES6+, CSS Grid/Flexbox, semantic HTML
-
-## 📊 Technical Specifications
-
-### Performance Metrics
-- **Build Size** - Optimized bundle with tree shaking
-  - CSS: ~87KB (compressed: ~16KB)
-  - JavaScript: ~49KB (compressed: ~13KB)
-- **Load Time** - Sub-second initial page load
-- **Lighthouse Score** - 90+ across all categories
-
-### Browser Support
-- **Chrome** 88+
-- **Firefox** 85+
-- **Safari** 14+
-- **Edge** 88+
-
-### Accessibility Features
-- **ARIA Labels** - Comprehensive screen reader support
-- **Keyboard Navigation** - Full keyboard accessibility
-- **Color Contrast** - WCAG AA compliant contrast ratios
-- **Focus Management** - Clear focus indicators and logical tab order
-
-## 🔮 Future Enhancements
-
-### Planned Features
-- **Real-time Multiplayer** - WebSocket-based live gameplay
-- **Advanced AI** - Different difficulty levels for single-player
-- **Mobile App** - Progressive Web App (PWA) capabilities
-- **Sound Effects** - Immersive audio experience
-- **Customization** - Themes, paddle colors, and game settings
-
-### Technical Improvements
-- **Backend Integration** - REST API for data persistence
-- **Real-time Updates** - WebSocket for live features
-- **Caching Strategy** - Service worker for offline functionality
-- **Testing Suite** - Unit and integration tests
-- **CI/CD Pipeline** - Automated deployment and testing
-
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
-
-### Development Guidelines
-- Follow TypeScript best practices
-- Maintain consistent code style
-- Add comments for complex logic
-- Test your changes thoroughly
-- Update documentation as needed
+Or build and run via Docker:
+```bash
+make build
+make start
+```
 
 ## 📄 License
 
 This project is part of the 42 School curriculum and follows their guidelines for student projects.
 
-## 🙏 Acknowledgments
-
-- **42 School** - For the project requirements and educational framework
-- **Vite Team** - For the excellent build tool
-- **Font Awesome** - For the comprehensive icon library
-- **Google Fonts** - For the beautiful typography
-- **CSS Tricks** & **MDN** - For invaluable web development resources
-
-## 📞 Contact
-
-**Project Repository**: [Final_Transcendence](https://github.com/hankhali/Final_Transcendence)
-
-**Developer**: hankhali
 
 ---
 
 <div align="center">
 
-**Built with ❤️ and lots of ☕**
-
-*Experience the future of retro gaming with Neon Pong!*
+Built with ❤️ and lots of ☕  
+Experience the future of retro gaming with Neon Pong!
 
 </div>
-
-after registration u have to login
- hanieh check
